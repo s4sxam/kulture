@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-espresso: #0C0804;
+  --color-amber-gold: #D4A373;
+  --color-crema: #FDFBF7;
+  --color-ash: #A39F98;
+}
+
+@layer base {
+  body {
+    @apply bg-espresso text-ash font-sans selection:bg-amber-gold selection:text-espresso;
+  }
+}
+
+.glass {
+  @apply backdrop-blur-md bg-black/70 border-b border-white/5;
+}
+
+.menu-item-dotted {
+  @apply border-b border-dotted border-ash/20 flex-grow mx-4 mb-1;
+}
