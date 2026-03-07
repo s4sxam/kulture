@@ -1,4 +1,3 @@
---- START OF FILE kulture---specialty-coffee-_-kitchen-_-sober-bar/src/types.ts ---
 export type Category = 'Espresso Bar' | 'Manual Brews' | 'Sober Bar' | 'Continental Bites' | 'Desserts';
 
 export interface MenuItem {
@@ -50,4 +49,3 @@ export const MENU_DATA: MenuItem[] =[
   { id: 'd2', name: 'Basque Burnt Cheesecake', price: 380, description: 'Creamy, crustless cheesecake with a beautifully caramelized top.', category: 'Desserts' },
   { id: 'd3', name: 'Affogato', price: 250, description: 'A double shot of hot espresso poured over a scoop of vanilla bean gelato.', category: 'Desserts' },
 ];
---- END OF FILE ---
