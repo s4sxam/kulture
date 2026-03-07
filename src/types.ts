@@ -1,3 +1,4 @@
+--- START OF FILE kulture---specialty-coffee-_-kitchen-_-sober-bar/src/types.ts ---
 export type Category = 'Espresso Bar' | 'Manual Brews' | 'Sober Bar' | 'Continental Bites' | 'Desserts';
 
 export interface MenuItem {
@@ -7,16 +8,24 @@ export interface MenuItem {
   description: string;
   category: Category;
   isNonVeg?: boolean;
+  image?: string;
 }
 
 export interface CartItem extends MenuItem {
   quantity: number;
 }
 
-export const MENU_DATA: MenuItem[] = [
+export const MENU_DATA: MenuItem[] =[
   // Espresso Bar
   { id: 'eb1', name: 'Kulture Signature Flat White', price: 280, description: 'Velvety micro-foam poured over a double shot of our signature blend.', category: 'Espresso Bar' },
-  { id: 'eb2', name: 'Spanish Latte', price: 310, description: 'Sweetened condensed milk meets bold espresso for a creamy, balanced treat.', category: 'Espresso Bar' },
+  { 
+    id: 'eb2', 
+    name: 'Spanish Latte', 
+    price: 310, 
+    description: 'Sweetened condensed milk meets bold espresso for a creamy, balanced treat.', 
+    category: 'Espresso Bar',
+    image: 'https://www.brighteyedbaker.com/wp-content/uploads/2024/03/Stirred-Iced-Spanish-Latte.jpg'
+  },
   { id: 'eb3', name: 'Dark Belgian Mocha', price: 350, description: 'Rich Belgian chocolate melted into espresso and steamed milk.', category: 'Espresso Bar' },
   { id: 'eb4', name: 'Cortado', price: 220, description: 'Equal parts espresso and warm milk for a powerful yet smooth experience.', category: 'Espresso Bar' },
 
@@ -41,3 +50,4 @@ export const MENU_DATA: MenuItem[] = [
   { id: 'd2', name: 'Basque Burnt Cheesecake', price: 380, description: 'Creamy, crustless cheesecake with a beautifully caramelized top.', category: 'Desserts' },
   { id: 'd3', name: 'Affogato', price: 250, description: 'A double shot of hot espresso poured over a scoop of vanilla bean gelato.', category: 'Desserts' },
 ];
+--- END OF FILE ---
