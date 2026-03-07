@@ -1,3 +1,4 @@
+--- START OF FILE kulture---specialty-coffee-_-kitchen-_-sober-bar/src/App.tsx ---
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -25,7 +26,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MENU_DATA, MenuItem, CartItem, Category } from './types';
 
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState<Category>('Espresso Bar');
+  const[activeCategory, setActiveCategory] = useState<Category>('Espresso Bar');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function App() {
       if (existing) {
         return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return[...prev, { ...item, quantity: 1 }];
     });
   };
 
@@ -63,7 +64,7 @@ export default function App() {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  const categories: { name: Category; icon: React.ReactNode }[] = [
+  const categories: { name: Category; icon: React.ReactNode }[] =[
     { name: 'Espresso Bar', icon: <Coffee size={20} /> },
     { name: 'Manual Brews', icon: <Droplet size={20} /> },
     { name: 'Sober Bar', icon: <Martini size={20} /> },
@@ -217,33 +218,46 @@ export default function App() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group"
+                className="group flex flex-col sm:flex-row gap-4 sm:gap-6"
               >
-                <div className="flex items-end justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-crema font-bold text-lg tracking-tight group-hover:text-amber-gold transition-colors">
-                      {item.name.toUpperCase()}
-                    </h3>
-                    {item.isNonVeg ? (
-                      <Triangle size={12} className="text-red-500 fill-red-500 rotate-180" />
-                    ) : (
-                      <Leaf size={14} className="text-green-500 fill-green-500" />
-                    )}
+                {/* Render Image if available */}
+                {item.image && (
+                  <div className="w-full sm:w-24 h-48 sm:h-24 shrink-0 rounded-xl overflow-hidden border border-white/10">
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
-                  <div className="menu-item-dotted"></div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-amber-gold font-bold text-lg">₹{item.price}</span>
-                    <button 
-                      onClick={() => addToCart(item)}
-                      className="w-8 h-8 rounded-full border border-amber-gold/30 flex items-center justify-center text-amber-gold hover:bg-amber-gold hover:text-espresso transition-all"
-                    >
-                      <Plus size={16} />
-                    </button>
+                )}
+                
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="flex items-end justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-crema font-bold text-lg tracking-tight group-hover:text-amber-gold transition-colors">
+                        {item.name.toUpperCase()}
+                      </h3>
+                      {item.isNonVeg ? (
+                        <Triangle size={12} className="text-red-500 fill-red-500 rotate-180" />
+                      ) : (
+                        <Leaf size={14} className="text-green-500 fill-green-500" />
+                      )}
+                    </div>
+                    <div className="menu-item-dotted"></div>
+                    <div className="flex items-center gap-4 shrink-0">
+                      <span className="text-amber-gold font-bold text-lg">₹{item.price}</span>
+                      <button 
+                        onClick={() => addToCart(item)}
+                        className="w-8 h-8 rounded-full border border-amber-gold/30 flex items-center justify-center text-amber-gold hover:bg-amber-gold hover:text-espresso transition-all"
+                      >
+                        <Plus size={16} />
+                      </button>
+                    </div>
                   </div>
+                  <p className="text-ash italic text-sm leading-relaxed max-w-md">
+                    {item.description}
+                  </p>
                 </div>
-                <p className="text-ash italic text-sm leading-relaxed max-w-md">
-                  {item.description}
-                </p>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -281,12 +295,24 @@ export default function App() {
                   </div>
                 ) : (
                   cart.map(item => (
-                    <div key={item.id} className="flex justify-between items-start gap-4">
+                    <div key={item.id} className="flex justify-between items-center gap-4">
+                      
+                      {/* Render Image in Cart if available */}
+                      {item.image && (
+                        <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-white/10">
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+
                       <div className="flex-grow">
                         <h4 className="text-crema font-bold text-sm uppercase">{item.name}</h4>
                         <p className="text-amber-gold text-sm font-bold mt-1">₹{item.price * item.quantity}</p>
                       </div>
-                      <div className="flex items-center gap-3 bg-espresso rounded-full px-3 py-1 border border-white/5">
+                      <div className="flex items-center gap-3 bg-espresso rounded-full px-3 py-1 border border-white/5 shrink-0">
                         <button onClick={() => removeFromCart(item.id)} className="text-ash hover:text-amber-gold"><Minus size={14} /></button>
                         <span className="text-crema font-bold text-sm w-4 text-center">{item.quantity}</span>
                         <button onClick={() => addToCart(item)} className="text-ash hover:text-amber-gold"><Plus size={14} /></button>
@@ -394,3 +420,4 @@ export default function App() {
     </div>
   );
 }
+--- END OF FILE ---
