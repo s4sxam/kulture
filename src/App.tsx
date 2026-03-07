@@ -1,9 +1,4 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   ShoppingBag, 
   X, 
@@ -26,8 +21,8 @@ import { MENU_DATA, MenuItem, CartItem, Category } from './types';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<Category>('Espresso Bar');
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const[isCartOpen, setIsCartOpen] = useState(false);
+  const[cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Cart Logic
@@ -53,7 +48,7 @@ export default function App() {
 
   const clearCart = () => setCart([]);
 
-  const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),[cart]);
+  const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + (item.price * item.quantity), 0), [cart]);
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
 
   const handleWhatsAppCheckout = () => {
@@ -253,4 +248,169 @@ export default function App() {
                       </button>
                     </div>
                   </div>
-                  <p className=
+                  <p className="text-ash italic text-sm leading-relaxed max-w-md">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* Cart Drawer */}
+      <AnimatePresence>
+        {isCartOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCartOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-zinc-900 z-[101] flex flex-col shadow-2xl"
+            >
+              <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                <h2 className="font-serif text-2xl italic text-crema">Your Cart</h2>
+                <button onClick={() => setIsCartOpen(false)} className="text-ash hover:text-crema"><X size={24} /></button>
+              </div>
+
+              <div className="flex-grow overflow-y-auto p-6 space-y-6">
+                {cart.length === 0 ? (
+                  <div className="h-full flex flex-col items-center justify-center text-ash opacity-50 space-y-4">
+                    <ShoppingBag size={48} />
+                    <p className="font-serif italic text-lg">Your cart is empty</p>
+                  </div>
+                ) : (
+                  cart.map(item => (
+                    <div key={item.id} className="flex justify-between items-center gap-4">
+                      
+                      {/* Render Image in Cart if available */}
+                      {item.image && (
+                        <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-white/10">
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+
+                      <div className="flex-grow">
+                        <h4 className="text-crema font-bold text-sm uppercase">{item.name}</h4>
+                        <p className="text-amber-gold text-sm font-bold mt-1">₹{item.price * item.quantity}</p>
+                      </div>
+                      <div className="flex items-center gap-3 bg-espresso rounded-full px-3 py-1 border border-white/5 shrink-0">
+                        <button onClick={() => removeFromCart(item.id)} className="text-ash hover:text-amber-gold"><Minus size={14} /></button>
+                        <span className="text-crema font-bold text-sm w-4 text-center">{item.quantity}</span>
+                        <button onClick={() => addToCart(item)} className="text-ash hover:text-amber-gold"><Plus size={14} /></button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {cart.length > 0 && (
+                <div className="p-6 bg-espresso/50 border-t border-white/5 space-y-4">
+                  <div className="flex justify-between items-center text-crema font-bold text-xl">
+                    <span>Total</span>
+                    <span className="text-amber-gold">₹{cartTotal}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button 
+                      onClick={clearCart}
+                      className="py-4 border border-white/10 text-ash rounded-xl hover:bg-white/5 transition-colors text-sm font-bold uppercase tracking-widest"
+                    >
+                      Clear
+                    </button>
+                    <button 
+                      onClick={handleWhatsAppCheckout}
+                      className="py-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-colors text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2"
+                    >
+                      Checkout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Footer / Location */}
+      <footer id="location" className="bg-black/40 py-24 px-6 md:px-12 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-amber-gold text-xs font-bold tracking-[0.5em] uppercase mb-4 block">V I S I T K U L T U R E</span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold italic text-crema">CHOWRINGHEE MANSION</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="bg-zinc-900/50 p-8 md:p-12 rounded-[2rem] border border-white/5 shadow-2xl">
+              <div className="flex gap-6 items-start mb-10">
+                <div className="w-12 h-12 rounded-2xl bg-amber-gold/10 flex items-center justify-center text-amber-gold shrink-0">
+                  <MapPin size={24} />
+                </div>
+                <div>
+                  <h4 className="text-crema font-bold uppercase tracking-widest text-sm mb-2">Our Address</h4>
+                  <p className="text-ash leading-relaxed">
+                    3rd Floor, Gate no. 1, Chowringhee Mansion, 30, Jawaharlal Nehru Rd, Park Street area, Kolkata, West Bengal 700016
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 mb-10">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <p className="text-ash text-sm font-medium uppercase tracking-widest">
+                  HOURS: Mon-Thu 8:30 AM-10 PM | Fri-Sun 8:30 AM-10:30 PM
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="https://maps.app.goo.gl/ysgZW14ugurjL25s9" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-grow flex items-center justify-center gap-3 px-8 py-4 bg-amber-gold text-espresso font-bold rounded-2xl hover:bg-crema transition-all uppercase tracking-widest text-sm"
+                >
+                  <Navigation size={18} />
+                  Get Directions
+                </a>
+                <a 
+                  href="tel:+919448040531" 
+                  className="flex-grow flex items-center justify-center gap-3 px-8 py-4 border border-amber-gold text-amber-gold font-bold rounded-2xl hover:bg-amber-gold hover:text-espresso transition-all uppercase tracking-widest text-sm"
+                >
+                  <Phone size={18} />
+                  Call Cafe
+                </a>
+              </div>
+            </div>
+
+            <div className="h-[400px] rounded-[2rem] overflow-hidden border border-white/5">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.340232468305!2d88.35032047596205!3d22.55140663388726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02771234567891%3A0x1234567890abcdef!2sKulture%20-%20Specialty%20Coffee%20%7C%20Kitchen%20%7C%20Sober%20Bar!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2)' }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+
+          <div className="mt-24 text-center border-t border-white/5 pt-12">
+            <h1 className="font-serif text-3xl font-bold italic text-amber-gold mb-4">Kulture</h1>
+            <p className="text-ash/40 text-xs uppercase tracking-[0.4em]">© 2026 Kulture Kolkata. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
