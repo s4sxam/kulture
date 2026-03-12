@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useMemo } from "react";
-import { cn } from "../lib/utils"; 
+import React, { useRef, useEffect, useState, useMemo } from "react";
+import { cn } from "../lib/utils";
 import { Pause, Play } from "lucide-react";
 
 export interface SlidingLogoMarqueeItem {
@@ -76,8 +76,8 @@ export function SlidingLogoMarquee({
       key={`${item.id}-${index}-${isDuplicate ? 'dup' : 'orig'}`}
       className={cn(
         "sliding-marquee-item text-crema",
-        "grid place-items-center cursor-pointer transition-all duration-300",
-        "hover:scale-105 hover:text-amber-gold focus:outline-none",
+        "grid place-items-center cursor-pointer transition-transform duration-200 ease-in-out",
+        "hover:scale-[1.05] focus:outline-none",
       )}
       onClick={() => handleItemClick(item)}
       role="button"
@@ -134,7 +134,7 @@ export function SlidingLogoMarquee({
         }
 
         .sliding-marquee-item {
-          min-width: clamp(120px, 20vw, 280px); 
+          min-width: clamp(120px, 18vw, 250px); 
           height: 100%;
         }
         
@@ -157,12 +157,12 @@ export function SlidingLogoMarquee({
           height: 100%;
           width: 100%;
           position: relative;
-          mask: linear-gradient(90deg, transparent, black 20% 80%, transparent);
+          mask: linear-gradient(90deg, transparent, black 15% 85%, transparent);
           display: flex; 
           pointer-events: none;
         }
 
-        .sliding-marquee-blur { position: absolute; top: 0; bottom: 0; width: 20%; z-index: 2; pointer-events: none; }
+        .sliding-marquee-blur { position: absolute; top: 0; bottom: 0; width: 25%; z-index: 2; pointer-events: none; }
         .sliding-marquee-blur--right { right: 0; }
         .sliding-marquee-blur--left { left: 0; rotate: 180deg; }
         .sliding-marquee-blur div {
@@ -213,10 +213,10 @@ export function SlidingLogoMarquee({
         {showControls && (
           <button
             onClick={togglePlayState}
-            className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-10 p-2 bg-white/5 text-ash rounded-full hover:bg-white/10 hover:text-amber-gold transition-all"
+            className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-10 p-1.5 bg-white/5 text-ash/50 rounded-full hover:bg-white/10 transition-colors"
             aria-label={isPlaying ? "Pause animation" : "Play animation"}
           >
-            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+            {isPlaying ? <Pause size={12} /> : <Play size={12} />}
           </button>
         )}
       </div>
