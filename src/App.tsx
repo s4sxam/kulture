@@ -14,16 +14,30 @@ import {
   Navigation,
   Leaf,
   Triangle,
-  Menu as MenuIcon
+  Menu as MenuIcon,
+  Image as ImageIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MENU_DATA, MenuItem, CartItem, Category } from './types';
+import { ThreeDImageRing } from './components/ThreeDImageRing';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<Category>('Espresso Bar');
-  const[cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Gallery Images
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800",
+    "https://images.unsplash.com/photo-1501339817302-444d383723b0?q=80&w=800",
+    "https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800",
+    "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=800",
+    "https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=800",
+    "https://images.unsplash.com/photo-1521017432531-fbd92d744264?q=80&w=800",
+    "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800",
+    "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800"
+  ];
 
   // Cart Logic
   const addToCart = (item: MenuItem) => {
@@ -32,7 +46,7 @@ export default function App() {
       if (existing) {
         return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
       }
-      return[...prev, { ...item, quantity: 1 }];
+      return [...prev, { ...item, quantity: 1 }];
     });
   };
 
@@ -58,7 +72,7 @@ export default function App() {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  const categories: { name: Category; icon: React.ReactNode }[] =[
+  const categories: { name: Category; icon: React.ReactNode }[] = [
     { name: 'Espresso Bar', icon: <Coffee size={20} /> },
     { name: 'Manual Brews', icon: <Droplet size={20} /> },
     { name: 'Sober Bar', icon: <Martini size={20} /> },
@@ -83,7 +97,7 @@ export default function App() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest uppercase text-crema/70">
           <a href="#home" className="hover:text-amber-gold transition-colors">Home</a>
           <a href="#menu" className="hover:text-amber-gold transition-colors">Menu</a>
-          <a href="#vibe" className="hover:text-amber-gold transition-colors">Vibe</a>
+          <a href="#gallery" className="hover:text-amber-gold transition-colors">Gallery</a>
           <a href="#location" className="hover:text-amber-gold transition-colors">Location</a>
         </div>
 
@@ -116,7 +130,7 @@ export default function App() {
             <div className="flex flex-col gap-6 text-2xl font-serif italic text-crema">
               <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
               <a href="#menu" onClick={() => setIsMobileMenuOpen(false)}>Menu</a>
-              <a href="#vibe" onClick={() => setIsMobileMenuOpen(false)}>Vibe</a>
+              <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</a>
               <a href="#location" onClick={() => setIsMobileMenuOpen(false)}>Location</a>
             </div>
           </motion.div>
@@ -214,7 +228,6 @@ export default function App() {
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 className="group flex flex-col sm:flex-row gap-4 sm:gap-6"
               >
-                {/* Render Image if available */}
                 {item.image && (
                   <div className="w-full sm:w-24 h-48 sm:h-24 shrink-0 rounded-xl overflow-hidden border border-white/10">
                     <img 
@@ -258,6 +271,28 @@ export default function App() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <section id="gallery" className="py-24 bg-black/20 overflow-hidden">
+        <div className="text-center mb-16 px-6">
+          <span className="text-amber-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 block">V I S U A L S</span>
+          <h2 className="font-serif text-4xl md:text-6xl font-bold italic text-crema inline-block relative">
+            THE KULTURE GALLERY
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-amber-gold"></div>
+          </h2>
+          <p className="text-ash mt-8 max-w-xl mx-auto italic opacity-70">
+            Drag or swipe the carousel to explore our aesthetic journey.
+          </p>
+        </div>
+
+        <div className="h-[500px] md:h-[600px] w-full flex items-center justify-center cursor-grab active:cursor-grabbing">
+          <ThreeDImageRing 
+            images={galleryImages} 
+            imageDistance={window?.innerWidth < 768 ? 350 : 450}
+            width={window?.innerWidth < 768 ? 220 : 280}
+          />
+        </div>
+      </section>
+
       {/* Cart Drawer */}
       <AnimatePresence>
         {isCartOpen && (
@@ -290,18 +325,11 @@ export default function App() {
                 ) : (
                   cart.map(item => (
                     <div key={item.id} className="flex justify-between items-center gap-4">
-                      
-                      {/* Render Image in Cart if available */}
                       {item.image && (
                         <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden border border-white/10">
-                          <img 
-                            src={item.image} 
-                            alt={item.name} 
-                            className="w-full h-full object-cover"
-                          />
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                         </div>
                       )}
-
                       <div className="flex-grow">
                         <h4 className="text-crema font-bold text-sm uppercase">{item.name}</h4>
                         <p className="text-amber-gold text-sm font-bold mt-1">₹{item.price * item.quantity}</p>
