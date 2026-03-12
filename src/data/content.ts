@@ -3,15 +3,61 @@ import { TeamMember } from '../components/TeamCarousel';
 import { Category } from '../types';
 
 export const HISTORY_EVENTS: TimelineEvent[] = [
-  { year: '2018', title: 'The Seed is Planted', description: 'Jonaki begins as a weekend pop-up in Krishnanagar, born from an obsession with single-origin beans.' },
-  { year: '2020', title: 'Our First Home', description: 'We open our doors to the heart of Krishnanagar — a hand-built espresso bar with soul.' },
-  { year: '2022', title: 'The Sober Bar', description: 'Reimagining the ritual. Jonaki launches Krishnanagar’s first zero-proof botanical menu.' },
-  { year: '2026', title: 'Still Glowing', description: "Today, Jonaki is a community. Like the firefly, we aim to be a light in the local culinary scene." },
+  { 
+    year: '2018', 
+    title: 'The Seed is Planted', 
+    description: 'Jonaki begins as a weekend pop-up in Krishnanagar, born from an obsession with single-origin beans and local soul.' 
+  },
+  { 
+    year: '2020', 
+    title: 'Our First Home', 
+    description: 'We open our doors in the heart of Krishnanagar — a hand-built espresso bar where every cup tells a story.' 
+  },
+  { 
+    year: '2022', 
+    title: 'The Sober Bar', 
+    description: 'Jonaki launches the region\'s first zero-proof botanical menu, reimagining the ritual of the cocktail without the alcohol.' 
+  },
+  { 
+    year: '2026', 
+    title: 'Still Glowing', 
+    description: 'Today, Jonaki is more than a café; it is a community of artists, thinkers, and coffee lovers in Krishnanagar.' 
+  },
 ];
 
 export const TEAM_MEMBERS: TeamMember[] = [
-  { id: '1', name: 'Arjun Mehta', role: 'Head Roaster', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400', bio: 'Ensuring every bean at Jonaki hits its flavor peak.' },
-  { id: '2', name: 'Sana Ray', role: 'Lead Mixologist', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', bio: 'The architect behind our Sober Bar masterpieces.' },
+  { 
+    id: '1', 
+    name: 'Arjun Mehta', 
+    role: 'Head Roaster', 
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400', 
+    bio: 'With a passion for fire and flavor, Arjun ensures every bean at Jonaki hits its peak profile.' 
+  },
+  { 
+    id: '2', 
+    name: 'Sana Ray', 
+    role: 'Lead Mixologist', 
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', 
+    bio: 'The architect behind our Sober Bar. Sana blends botanicals to create zero-proof masterpieces.' 
+  },
+  { 
+    id: '3', 
+    name: 'Chef David', 
+    role: 'Executive Chef', 
+    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400', 
+    bio: 'David brings artisanal sourdough and continental flair to the Jonaki kitchen.' 
+  },
+];
+
+export const GALLERY_IMAGES = [
+  'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600',
+  'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600',
+  'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600',
+  'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600',
+  'https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600',
+  'https://images.unsplash.com/photo-1516743619420-154b70a65fea?q=80&w=600',
+  'https://images.unsplash.com/photo-1533422902779-aff35862e462?q=80&w=600',
+  'https://images.unsplash.com/photo-1572286258217-215cf8e2e11d?q=80&w=600',
 ];
 
 export const CATEGORY_COLORS: Record<Category, string> = {
