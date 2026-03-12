@@ -83,14 +83,13 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
           .menu-item-${zIndex} {
             position: relative;
             list-style: none;
-            padding: 1.25rem 0;
+            padding: 1rem 0; /* Reduced padding for a tighter look */
             cursor: pointer;
-            transform: translateY(30px);
+            transform: translateY(20px);
             opacity: 0;
             transition: all 0.4s ease;
-            font-family: var(--font-serif);
+            font-family: var(--font-sans); /* Changed to sans to match your SparkleNavbar */
             font-weight: 700;
-            font-style: italic;
             color: #A39F98; /* ash */
           }
           
@@ -108,8 +107,9 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-size: 2rem;
-            letter-spacing: 0.05em;
+            font-size: 1rem; /* MUCH SMALLER: Matches a clean, luxury UI */
+            text-transform: uppercase;
+            letter-spacing: 0.2em; /* Wide tracking to match SparkleNavbar */
           }
         `}
       </style>
@@ -129,7 +129,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
                 item.isActive && "active"
               )}
               style={{
-                transitionDelay: isOpen ? `${index * 0.1}s` : "0s",
+                transitionDelay: isOpen ? `${index * 0.08}s` : "0s",
               }}
               onClick={() => {
                 item.onClick();
@@ -138,7 +138,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             >
               <span>
                 {item.label}
-                {item.isActive && <span className="w-2 h-2 rounded-full bg-amber-gold" />}
+                {item.isActive && <span className="w-1.5 h-1.5 rounded-full bg-amber-gold" />}
               </span>
             </li>
           ))}
