@@ -16,6 +16,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { ThreeDImageRing } from './components/ThreeDImageRing';
 import { ScrollTimeline } from './components/ScrollTimeline';
 import TeamCarousel from './components/TeamCarousel';
+import { ImageTrailEffect } from './components/ImageTrailEffect';
 
 export type View = 'Home' | 'Menu' | 'Gallery' | 'Team' | 'History';
 
@@ -23,9 +24,9 @@ export default function App() {
   const [currentView, setCurrentView] = useState<View>('Home');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const[isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems: View[] = ['Home', 'Menu', 'Gallery', 'Team', 'History'];
+  const navItems: View[] =['Home', 'Menu', 'Gallery', 'Team', 'History'];
   const totalCartItems = cart.reduce((sum, i) => sum + i.quantity, 0);
 
   const addToCart = (item: MenuItem | CartItem) => {
@@ -65,14 +66,29 @@ export default function App() {
           {currentView === 'Menu' && <MenuPage key="menu" onAddToCart={addToCart} />}
 
           {currentView === 'Gallery' && (
-            <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-80px)]">
+            <motion.div key="gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-80px)] pb-20">
               <div className="text-center pt-12 sm:pt-16 pb-6 sm:pb-8 px-4">
                 <span className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Visual Stories</span>
                 <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold italic text-crema">Gallery</h2>
                 <p className="text-ash mt-3 text-xs sm:text-sm">Drag to spin · Hover to focus</p>
               </div>
-              <div className="w-full" style={{ height: 'clamp(300px, 60vh, 600px)' }}>
+              
+              {/* 3D Ring */}
+              <div className="w-full mb-16 sm:mb-24" style={{ height: 'clamp(300px, 60vh, 600px)' }}>
                 <ThreeDImageRing images={GALLERY_IMAGES} />
+              </div>
+
+              {/* Interactive Image Trail */}
+              <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                <div className="text-center mb-8">
+                  <h3 className="font-serif text-2xl sm:text-3xl italic text-crema mb-2">Interactive Canvas</h3>
+                  <p className="text-ash/60 text-xs sm:text-sm">Move your cursor across the canvas to reveal</p>
+                </div>
+                <ImageTrailEffect 
+                  imageSources={GALLERY_IMAGES} 
+                  containerClassName="bg-white/[0.02] border border-white/5" 
+                  useFadeEffect={true}
+                />
               </div>
             </motion.div>
           )}
