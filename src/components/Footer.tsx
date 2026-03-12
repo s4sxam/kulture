@@ -8,7 +8,7 @@ export const Footer = ({ navItems, currentView, navigate }: { navItems: View[], 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row justify-between gap-8 sm:gap-12 mb-10 sm:mb-12">
           <div className="max-w-xs">
-            <h1 className="font-serif text-3xl sm:text-4xl font-bold italic text-amber-gold">Kulture</h1>
+            <h1 className="font-serif text-3xl sm:text-4xl font-bold italic text-amber-gold">Jonaki</h1>
             <p className="text-ash text-xs sm:text-sm mt-3 leading-relaxed">
               Specialty coffee, zero-proof cocktails, and artisanal food.<br />Brewed with intention, served with warmth.
             </p>
@@ -23,14 +23,14 @@ export const Footer = ({ navItems, currentView, navigate }: { navItems: View[], 
           </div>
           <div className="text-sm text-ash/70 space-y-1.5">
             <p className="text-ash/40 text-[10px] uppercase tracking-widest mb-2">Visit Us</p>
-            <p>Ballygunge Place</p>
-            <p>South Kolkata, WB</p>
+            <p>Visit Us</p>
+            <p>Krishnanagar WB</p>
             <p className="text-amber-gold/80 mt-1">Open 8 AM – 11 PM daily</p>
           </div>
         </div>
         <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
           <p className="text-ash/30 text-[10px] uppercase tracking-widest">© 2026 Kulture Kolkata. All rights reserved.</p>
-          <p className="text-ash/20 text-[10px]">Made with ☕ in Kolkata</p>
+          <p className="text-ash/20 text-[10px]">Made by Tanay</p>
         </div>
       </div>
     </footer>
