@@ -7,7 +7,14 @@ import { View } from '../App';
 
 export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void; addToCart: (item: MenuItem) => void }) => {
   return (
-    <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
+    <motion.div 
+      key="home" 
+      className="w-full overflow-x-hidden" /* <--- THIS LINE FIXES THE ISSUE */
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 0.35 }}
+    >
       <section className="relative flex flex-col items-center justify-center min-h-[55vh] sm:min-h-[65vh] text-center px-4 py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-espresso pointer-events-none" />
         <motion.p
