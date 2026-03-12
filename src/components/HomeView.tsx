@@ -9,12 +9,10 @@ export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void;
   return (
     <motion.div 
       key="home" 
-      className="w-full overflow-x-hidden" /* <--- THIS LINE FIXES THE ISSUE */
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }} 
-      transition={{ duration: 0.35 }}
+      className="w-full overflow-x-hidden" 
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}
     >
+      {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[55vh] sm:min-h-[65vh] text-center px-4 py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-espresso pointer-events-none" />
         <motion.p
@@ -54,6 +52,7 @@ export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void;
         </motion.div>
       </section>
 
+      {/* Stats */}
       <section className="bg-black/30 border-y border-white/5 py-6 sm:py-8">
         <div className="max-w-4xl mx-auto px-4 grid grid-cols-3 gap-2 sm:gap-4 text-center">
           {[
@@ -69,6 +68,7 @@ export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void;
         </div>
       </section>
 
+      {/* Chain Carousel */}
       <section className="py-10 sm:py-16 bg-black/20">
         <div className="text-center mb-6 sm:mb-10 px-4">
           <span className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-2 block">Quick Add</span>
@@ -84,6 +84,7 @@ export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void;
         />
       </section>
 
+      {/* Feature Cards */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
         <div className="text-center mb-10 sm:mb-14">
           <span className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Why Kulture</span>
@@ -111,6 +112,7 @@ export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void;
         </div>
       </section>
 
+      {/* CTA */}
       <section className="mx-4 sm:mx-6 lg:mx-auto max-w-5xl mb-16 sm:mb-20 bg-amber-gold/10 border border-amber-gold/20 rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center">
         <h3 className="font-serif text-2xl sm:text-4xl italic text-crema font-bold mb-3 sm:mb-4">Visit Us in Kolkata</h3>
         <p className="text-ash text-xs sm:text-sm max-w-sm mx-auto mb-6 sm:mb-8 leading-relaxed">
