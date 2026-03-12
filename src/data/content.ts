@@ -1,4 +1,3 @@
-// src/data/content.ts
 import { TimelineEvent } from '../components/ScrollTimeline';
 import { TeamMember } from '../components/TeamCarousel';
 import { Category } from '../types';
@@ -13,15 +12,6 @@ export const HISTORY_EVENTS: TimelineEvent[] = [
 export const TEAM_MEMBERS: TeamMember[] = [
   { id: '1', name: 'Arjun Mehta', role: 'Head Roaster', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400', bio: 'Ensuring every bean at Jonaki hits its flavor peak.' },
   { id: '2', name: 'Sana Ray', role: 'Lead Mixologist', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', bio: 'The architect behind our Sober Bar masterpieces.' },
-];
-
-export const GALLERY_IMAGES = [
-  'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600',
-  'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600',
-  'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600',
-  'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600',
-  'https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600',
-  'https://images.unsplash.com/photo-1516743619420-154b70a65fea?q=80&w=600',
 ];
 
 export const CATEGORY_COLORS: Record<Category, string> = {
