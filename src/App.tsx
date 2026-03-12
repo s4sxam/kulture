@@ -18,11 +18,11 @@ import SlidingCards from './components/SlidingCards';
 
 export type View = 'Home' | 'Menu' | 'Gallery' | 'Team' | 'History';
 
-const KULTURE_TALK = [
-  { id: 1, text: "How's your brew today? V60 clarity or Flat White velvet?", icon: <Coffee size={32} /> },
-  { id: 2, text: "Sweet or Savory? Basque Cheesecake or Truffle Crostini?", icon: <Sparkles size={32} /> },
-  { id: 3, text: "Mocktail or Coffee? Or a bit of both for the vibe?", icon: <Heart size={32} /> },
-  { id: 4, text: "Tag us in your visual stories. We love seeing Kulture through your lens.", icon: <MessageSquare size={32} /> },
+const JONAKI_TALK = [
+  { id: 1, title: "The Perfect Brew?", description: "How's your brew today? V60 clarity or Flat White velvet?", bgClass: "bg-zinc-900" },
+  { id: 2, title: "Your Palate?", description: "Sweet or Savory? Basque Cheesecake or Truffle Crostini?", bgClass: "bg-zinc-900" },
+  { id: 3, title: "The Vibe?", description: "Mocktail or Coffee? Or a bit of both for the vibe?", bgClass: "bg-zinc-900" },
+  { id: 4, title: "Connect", description: "Tag us in your stories. We love seeing Jonaki through your lens.", bgClass: "bg-zinc-900" },
 ];
 
 export default function App() {
@@ -77,12 +77,10 @@ export default function App() {
                 <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold italic text-crema">Gallery</h2>
               </div>
               
-              {/* Section 1: 3D Image Ring */}
               <div className="w-full mb-20" style={{ height: '500px' }}>
                 <ThreeDImageRing images={GALLERY_IMAGES} />
               </div>
 
-              {/* Section 2: Image Trail Effect */}
               <div className="max-w-5xl mx-auto px-4 mb-24">
                 <div className="text-center mb-8">
                   <h3 className="font-serif text-2xl sm:text-3xl italic text-crema">Interactive Canvas</h3>
@@ -94,13 +92,12 @@ export default function App() {
                 />
               </div>
 
-              {/* Section 3: Sliding Conversation Cards */}
               <div className="max-w-md mx-auto px-4">
                 <div className="text-center mb-10">
-                  <span className="text-amber-gold text-[10px] font-bold tracking-[0.3em] uppercase mb-2 block">Kulture Talk</span>
+                  <span className="text-amber-gold text-[10px] font-bold tracking-[0.3em] uppercase mb-2 block">Jonaki Talk</span>
                   <h3 className="font-serif text-2xl italic text-crema">Let's Connect</h3>
                 </div>
-                <SlidingCards cards={KULTURE_TALK} />
+                <SlidingCards cards={JONAKI_TALK} />
               </div>
             </motion.div>
           )}
