@@ -9,137 +9,71 @@ import { View } from '../App';
 const PARTNER_ITEMS = [
   { id: 'p1', content: <span className="font-serif italic text-lg opacity-60">Condé Nast Traveller</span> },
   { id: 'p2', content: <span className="font-sans font-bold text-[10px] uppercase tracking-widest opacity-40">SCA Certified</span> },
-  { id: 'p3', content: <span className="font-serif italic text-lg opacity-60">Kolkata Foodies</span> },
+  { id: 'p3', content: <span className="font-serif italic text-lg opacity-60">Krishnanagar Foodies</span> },
   { id: 'p4', content: <span className="font-sans font-bold text-[10px] uppercase tracking-widest opacity-40">Direct Trade</span> },
 ];
 
 export const HomeView = ({ navigate, addToCart }: { navigate: (v: View) => void; addToCart: (item: MenuItem) => void }) => {
   return (
-    <motion.div 
-      key="home" 
-      className="w-full overflow-x-hidden" // FIX: This keeps your icons in place!
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}
-    >
-      {/* 1. Hero Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-[55vh] sm:min-h-[65vh] text-center px-4 py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-espresso pointer-events-none" />
-        <motion.p
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-          className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase mb-4 sm:mb-6"
-        >
-          Specialty Coffee · Sober Bar · Continental Kitchen
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.28 }}
-          className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-crema italic font-bold leading-tight"
-        >
-          Where Art<br />Meets Coffee.
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.42 }}
-          className="text-ash text-sm sm:text-base max-w-xs sm:max-w-md mt-4 sm:mt-6 leading-relaxed"
-        >
-          Kolkata's most loved specialty café. Artisan brews, zero-proof cocktails, and food made with soul.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
-          className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-6 sm:px-0"
-        >
-          <button
-            onClick={() => navigate('Menu')}
-            className="flex items-center justify-center gap-2 bg-amber-gold hover:bg-amber-gold/90 active:bg-amber-gold/80 text-espresso font-bold px-7 sm:px-8 py-3.5 rounded-full transition-all text-sm tracking-wide"
-          >
-            Explore Menu <ArrowRight size={15} />
-          </button>
-          <button
-            onClick={() => navigate('History')}
-            className="bg-white/5 hover:bg-white/10 active:bg-white/15 text-crema font-semibold px-7 sm:px-8 py-3.5 rounded-full border border-white/10 transition-all text-sm"
-          >
-            Our Story
-          </button>
-        </motion.div>
+    <motion.div key="home" className="w-full overflow-x-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      {/* Hero */}
+      <section className="relative flex flex-col items-center justify-center min-h-[55vh] sm:min-h-[65vh] text-center px-4 py-16">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-espresso pointer-events-none" />
+        <motion.p className="text-amber-gold text-[10px] font-bold tracking-[0.35em] uppercase mb-4">Specialty Coffee · Krishnanagar</motion.p>
+        <motion.h2 className="font-serif text-4xl sm:text-7xl lg:text-8xl text-crema italic font-bold leading-tight mb-6">Where Light<br />Meets Coffee.</motion.h2>
+        <p className="text-ash text-sm sm:text-base max-w-md mx-auto mb-10">Krishnanagar's signature artisan café. Artisan brews, zero-proof cocktails, and food made with soul.</p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button onClick={() => navigate('Menu')} className="bg-amber-gold text-espresso font-bold px-8 py-3.5 rounded-full">Explore Menu</button>
+          <button onClick={() => navigate('History')} className="bg-white/5 text-crema font-semibold px-8 py-3.5 rounded-full border border-white/10">Our Story</button>
+        </div>
       </section>
 
-      {/* 2. Stats Section */}
-      <section className="bg-black/30 border-y border-white/5 py-6 sm:py-8">
-        <div className="max-w-4xl mx-auto px-4 grid grid-cols-3 gap-2 sm:gap-4 text-center">
-          {[
-            { value: '8+', label: 'Years Brewing' },
-            { value: '50+', label: 'Menu Items' },
-            { value: '10K+', label: 'Happy Guests' },
-          ].map(s => (
+      {/* Stats */}
+      <section className="bg-black/30 border-y border-white/5 py-8">
+        <div className="max-w-4xl mx-auto px-4 grid grid-cols-3 gap-4 text-center">
+          {[{ value: '8+', label: 'Years Glowing' }, { value: '50+', label: 'Menu Items' }, { value: '10K+', label: 'Happy Guests' }].map(s => (
             <div key={s.label}>
               <p className="font-serif text-2xl sm:text-4xl font-bold italic text-amber-gold">{s.value}</p>
-              <p className="text-ash text-[9px] sm:text-xs uppercase tracking-widest mt-1">{s.label}</p>
+              <p className="text-ash text-[9px] uppercase tracking-widest">{s.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 3. Chain Carousel Section */}
-      <section className="py-10 sm:py-16 bg-black/20">
-        <div className="text-center mb-6 sm:mb-10 px-4">
-          <span className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-2 block">Quick Add</span>
-          <h3 className="font-serif text-2xl sm:text-3xl italic text-crema">Browse &amp; Add to Cart</h3>
+      {/* Chain Carousel */}
+      <section className="py-16 bg-black/20">
+        <div className="text-center mb-10 px-4">
+          <span className="text-amber-gold text-xs font-bold tracking-widest uppercase block mb-2">Quick Add</span>
+          <h3 className="font-serif text-3xl italic text-crema">Add to Cart</h3>
         </div>
-        <ChainCarousel
-          items={MENU_DATA.map(i => ({ id: i.id, name: i.name, details: `₹${i.price}`, icon: Coffee, logo: i.image }))}
-          onChainSelect={(id) => {
-            const item = MENU_DATA.find(m => m.id === id);
-            if (item) addToCart(item);
-          }}
-        />
+        <ChainCarousel items={MENU_DATA.map(i => ({ id: i.id, name: i.name, details: `₹${i.price}`, icon: Coffee, logo: i.image }))} onChainSelect={(id) => {
+          const item = MENU_DATA.find(m => m.id === id);
+          if (item) addToCart(item);
+        }} />
       </section>
 
-      {/* 4. Feature Cards: "More Than a Café" */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-        <div className="text-center mb-10 sm:mb-14">
-          <span className="text-amber-gold text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Why Kulture</span>
-          <h3 className="font-serif text-3xl sm:text-4xl italic text-crema font-bold">More Than a Café</h3>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-16">
-          {[
-            { title: 'Single Origin', desc: 'Beans sourced directly from farms in Coorg, Araku, and beyond. Roasted weekly in-house.', emoji: '☕' },
-            { title: 'Zero-Proof Bar', desc: 'Sophisticated cocktails — the experience, the ritual, the taste. Without the alcohol.', emoji: '🍹' },
-            { title: 'Artisanal Kitchen', desc: 'From truffle crostini to Basque burnt cheesecake — every plate made from scratch, daily.', emoji: '🍽️' },
-          ].map((card, i) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 sm:p-8 hover:border-amber-gold/30 hover:bg-white/[0.06] transition-all duration-300"
-            >
-              <div className="text-3xl sm:text-4xl mb-4">{card.emoji}</div>
-              <h3 className="font-serif text-lg sm:text-xl text-crema italic mb-2">{card.title}</h3>
-              <p className="text-ash text-xs sm:text-sm leading-relaxed">{card.desc}</p>
+      {/* Feature Cards */}
+      <section className="max-w-5xl mx-auto px-4 py-20">
+        <h3 className="font-serif text-4xl italic text-crema text-center mb-14">More Than a Café</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+          {[{ title: 'Single Origin', desc: 'Beans sourced directly from farms. Roasted weekly in-house.', emoji: '☕' }, { title: 'Zero-Proof Bar', desc: 'Sophisticated cocktails without the alcohol.', emoji: '🍹' }, { title: 'Artisanal Kitchen', desc: 'Everything made from scratch, daily.', emoji: '🍽️' }].map((card, i) => (
+            <motion.div key={i} className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
+              <div className="text-4xl mb-4">{card.emoji}</div>
+              <h3 className="font-serif text-xl text-crema italic mb-2">{card.title}</h3>
+              <p className="text-ash text-sm">{card.desc}</p>
             </motion.div>
           ))}
         </div>
-
-        {/* ════ MARQUEE AT THE END OF THIS SECTION ════ */}
         <div className="pt-10 border-t border-white/5">
-          <SlidingLogoMarquee 
-            items={PARTNER_ITEMS} 
-            speed={1.5} 
-            height="50px"
-          />
+          <SlidingLogoMarquee items={PARTNER_ITEMS} speed={1.5} height="60px" />
         </div>
       </section>
 
-      {/* 5. CTA Section */}
-      <section className="mx-4 sm:mx-6 lg:mx-auto max-w-5xl mb-16 sm:mb-20 bg-amber-gold/10 border border-amber-gold/20 rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center">
-        <h3 className="font-serif text-2xl sm:text-4xl italic text-crema font-bold mb-3 sm:mb-4">Visit Us in Kolkata</h3>
-        <p className="text-ash text-xs sm:text-sm max-w-sm mx-auto mb-6 sm:mb-8 leading-relaxed">
-          Ballygunge Place, South Kolkata.<br />Open daily 8 AM – 11 PM.
-        </p>
-        <button
-          onClick={() => navigate('Menu')}
-          className="inline-flex items-center gap-2 bg-amber-gold hover:bg-amber-gold/90 text-espresso font-bold px-7 py-3 rounded-full text-sm transition-all"
-        >
-          Order Now <ArrowRight size={14} />
-        </button>
+      {/* CTA */}
+      <section className="mx-4 sm:mx-auto max-w-5xl mb-20 bg-amber-gold/10 border border-amber-gold/20 rounded-3xl p-12 text-center">
+        <h3 className="font-serif text-4xl italic text-crema font-bold mb-4">Visit Us in Krishnanagar</h3>
+        <p className="text-ash text-sm mb-8">Nadia, West Bengal. Open daily 8 AM – 11 PM.</p>
+        <button onClick={() => navigate('Menu')} className="bg-amber-gold text-espresso font-bold px-8 py-3 rounded-full flex items-center gap-2 mx-auto">Order Now <ArrowRight size={14}/></button>
       </section>
     </motion.div>
   );
