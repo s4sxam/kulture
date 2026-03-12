@@ -25,7 +25,7 @@ export const Navbar = ({
         onClick={() => navigate('Home')}
         className="font-serif text-2xl sm:text-3xl font-bold italic text-amber-gold cursor-pointer hover:opacity-80 transition-opacity select-none z-[101]"
       >
-        Kulture
+        Jonaki
       </h1>
 
       <div className="hidden md:block">
