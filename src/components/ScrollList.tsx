@@ -7,11 +7,11 @@ interface ScrollListProps<T> {
   itemHeight?: number;
 }
 
-const ScrollList = <T,>({
+function ScrollList<T>({
   data,
   renderItem,
   itemHeight = 155,
-}: ScrollListProps<T>) => {
+}: ScrollListProps<T>) {
   const listRef = useRef<HTMLDivElement>(null);
   const [focusedIndex, setFocusedIndex] = useState<number>(0);
 
@@ -125,4 +125,4 @@ const ScrollList = <T,>({
       })}
     </div>
   );
-};
+}
