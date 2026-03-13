@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import { MENU_DATA, MenuItem, Category } from '../types';
 import { cn } from '../lib/utils';
 import { CATEGORY_COLORS, CATEGORY_BADGE } from '../data/content';
-import { ScrollList } from './ScrollList';
+import ScrollList from './ScrollList';
 
 export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => void }) => {
   const categories: Category[] = ['Espresso Bar', 'Manual Brews', 'Sober Bar', 'Continental Bites', 'Desserts'];
@@ -63,51 +63,54 @@ export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => voi
           transition={{ duration: 0.22 }}
         >
           <ScrollList
-            data={filteredItems}
+            data={filteredItems as unknown[]}
             itemHeight={140}
-            renderItem={(item) => (
-              <div
-                className={cn(
-                  'h-full bg-white/[0.04] rounded-2xl border overflow-hidden transition-all duration-300 group flex',
-                  'hover:bg-white/[0.07] hover:shadow-lg hover:shadow-black/30',
-                  CATEGORY_COLORS[item.category]
-                )}
-              >
-                {item.image && (
-                  <div className="w-32 sm:w-40 shrink-0 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
-                  <div>
-                    <div className="flex items-start justify-between gap-2 mb-1.5">
-                      <h3 className="font-serif text-base sm:text-lg text-crema leading-snug">{item.name}</h3>
-                      <span className={cn('shrink-0 mt-1 w-4 h-4 border flex items-center justify-center rounded-sm', item.isNonVeg ? 'border-red-500' : 'border-green-500')}>
-                        <span className={cn('w-2 h-2 rounded-full block', item.isNonVeg ? 'bg-red-500' : 'bg-green-500')} />
-                      </span>
+            renderItem={(rawItem) => {
+              const item = rawItem as MenuItem;
+              return (
+                <div
+                  className={cn(
+                    'h-full bg-white/[0.04] rounded-2xl border overflow-hidden transition-all duration-300 group flex',
+                    'hover:bg-white/[0.07] hover:shadow-lg hover:shadow-black/30',
+                    CATEGORY_COLORS[item.category]
+                  )}
+                >
+                  {item.image && (
+                    <div className="w-32 sm:w-40 shrink-0 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
                     </div>
-                    <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', CATEGORY_BADGE[item.category])}>
-                      {item.category}
-                    </span>
-                    <p className="text-ash text-xs leading-relaxed mt-2 line-clamp-2">{item.description}</p>
-                  </div>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">₹{item.price}</span>
-                    <button
-                      onClick={() => onAddToCart(item)}
-                      className="flex items-center gap-1.5 bg-amber-gold/10 hover:bg-amber-gold active:scale-95 text-amber-gold hover:text-espresso text-xs font-bold px-3 sm:px-4 py-2 rounded-full border border-amber-gold/40 hover:border-amber-gold transition-all duration-200"
-                    >
-                      <Plus size={12} /> Add
-                    </button>
+                  )}
+                  <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
+                    <div>
+                      <div className="flex items-start justify-between gap-2 mb-1.5">
+                        <h3 className="font-serif text-base sm:text-lg text-crema leading-snug">{item.name}</h3>
+                        <span className={cn('shrink-0 mt-1 w-4 h-4 border flex items-center justify-center rounded-sm', item.isNonVeg ? 'border-red-500' : 'border-green-500')}>
+                          <span className={cn('w-2 h-2 rounded-full block', item.isNonVeg ? 'bg-red-500' : 'bg-green-500')} />
+                        </span>
+                      </div>
+                      <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', CATEGORY_BADGE[item.category])}>
+                        {item.category}
+                      </span>
+                      <p className="text-ash text-xs leading-relaxed mt-2 line-clamp-2">{item.description}</p>
+                    </div>
+                    <div className="flex items-center justify-between mt-3">
+                      <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">₹{item.price}</span>
+                      <button
+                        onClick={() => onAddToCart(item)}
+                        className="flex items-center gap-1.5 bg-amber-gold/10 hover:bg-amber-gold active:scale-95 text-amber-gold hover:text-espresso text-xs font-bold px-3 sm:px-4 py-2 rounded-full border border-amber-gold/40 hover:border-amber-gold transition-all duration-200"
+                      >
+                        <Plus size={12} /> Add
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            }}
           />
         </motion.div>
       </AnimatePresence>
