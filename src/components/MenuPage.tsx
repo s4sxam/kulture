@@ -93,7 +93,7 @@ export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => voi
                 </span>
                 <p className="text-ash text-xs leading-relaxed mt-2 mb-4">{item.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">â‚¹{item.price}</span>
+                  <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">₹{item.price}</span>
                   <button
                     onClick={() => onAddToCart(item)}
                     className="flex items-center gap-1.5 bg-amber-gold/10 hover:bg-amber-gold active:scale-95 text-amber-gold hover:text-espresso text-xs font-bold px-3 sm:px-4 py-2 rounded-full border border-amber-gold/40 hover:border-amber-gold transition-all duration-200"
