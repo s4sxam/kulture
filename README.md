@@ -36,32 +36,31 @@
 
 ---
 
-## 📁 Project Structure
+##📁 Project Structure
 src/
 ├── components/
-│   ├── CartDrawer.tsx       # Slide-up/slide-in cart with WhatsApp checkout
-│   ├── MenuPage.tsx         # Tabbed menu with animated item grid
-│   ├── HomeView.tsx         # Landing page with hero, stats & feature cards
-│   ├── Navbar.tsx           # Top navigation bar
-│   ├── SparkleNavbar.tsx    # Animated sparkle nav links
+│   ├── CartDrawer.tsx            # Slide-up/slide-in cart with WhatsApp checkout
+│   ├── MenuPage.tsx              # Tabbed menu with animated item grid
+│   ├── HomeView.tsx              # Landing page with hero, stats & feature cards
+│   ├── Navbar.tsx                # Top navigation bar
+│   ├── SparkleNavbar.tsx         # Animated sparkle nav links
 │   ├── HamburgerMenuOverlay.tsx  # Mobile menu overlay
-│   ├── TeamCarousel.tsx     # Draggable team member carousel
-│   ├── ChainCarousel.tsx    # Quick-add horizontal item carousel
-│   ├── ThreeDImageRing.tsx  # 3D spinning image gallery
-│   ├── ScrollTimeline.tsx   # Scroll-driven history timeline
-│   ├── GalleryView.tsx      # Gallery page
-│   ├── Footer.tsx           # Site footer
-│   ├── SlidingCards.tsx     # Sliding card animations
-│   ├── SlidingLogoMarquee.tsx  # Logo marquee strip
-│   ├── ImageTrailEffect.tsx # Cursor image trail effect
-│   └── card.tsx             # Base card UI component
+│   ├── TeamCarousel.tsx          # Draggable team member carousel
+│   ├── ChainCarousel.tsx         # Quick-add horizontal item carousel
+│   ├── ThreeDImageRing.tsx       # 3D spinning image gallery
+│   ├── ScrollTimeline.tsx        # Scroll-driven history timeline
+│   ├── GalleryView.tsx           # Gallery page
+│   ├── Footer.tsx                # Site footer
+│   ├── SlidingCards.tsx          # Sliding card animations
+│   ├── SlidingLogoMarquee.tsx    # Logo marquee strip
+│   ├── ImageTrailEffect.tsx      # Cursor image trail effect
+│   └── card.tsx                  # Base card UI component
 ├── data/
-│   └── content.ts           # All site content — team, history, gallery, category styles
-├── types.ts                 # TypeScript types & full MENU_DATA
-├── App.tsx                  # Root app with routing & cart state
-├── main.tsx                 # Entry point
-└── index.css                # Global styles & Tailwind config
----
+│   └── content.ts                # All site content — team, history, gallery, category styles
+├── types.ts                      # TypeScript types & full MENU_DATA
+├── App.tsx                       # Root app with routing & cart state
+├── main.tsx                      # Entry point
+└── index.css                     # Global styles & Tailwind config
 
 ## 🚀 Getting Started
 
