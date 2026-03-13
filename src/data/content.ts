@@ -44,7 +44,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: '3', 
     name: 'Chef David', 
     role: 'Executive Chef', 
-    image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=400', 
+    image: 'https://images.pexels.com/photos/6605421/pexels-photo-6605421.jpeg?auto=compress&cs=tinysrgb&w=400', 
     bio: 'David brings artisanal sourdough and continental flair to the Jonaki kitchen.' 
   },
 ];
