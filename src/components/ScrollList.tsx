@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "motion/react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, Variants } from "motion/react";
 
 export interface ScrollListProps {
