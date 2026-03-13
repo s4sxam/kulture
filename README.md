@@ -74,7 +74,7 @@ src/
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone <>
 cd kulture-main
 
 # Install dependencies
@@ -93,10 +93,5 @@ Opening the cart shows all items with +/− quantity controls and a delete butto
 Tapping Send Order via WhatsApp opens WhatsApp with a pre-formatted order message sent directly to the café
 📦 Deployment
 The project is deployed on Vercel with zero configuration. Any push to the main branch auto-deploys.
-[
-�
-Load image
-](https://kulture-ashy.vercel.app)
-📄 License
-This project is private and proprietary. All rights reserved © 2026 Kulture, Kolkata.
-Just drop this as `README.md` in the root of your project next to `package.json`. ✅
+
+(https://kulture-ashy.vercel.app)
