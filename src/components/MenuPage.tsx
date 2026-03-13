@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import { MENU_DATA, MenuItem, Category } from '../types';
 import { cn } from '../lib/utils';
 import { CATEGORY_COLORS, CATEGORY_BADGE } from '../data/content';
-import ScrollList from './ScrollList';
+import { ScrollList } from './ScrollList';
 
 export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => void }) => {
   const categories: Category[] = ['Espresso Bar', 'Manual Brews', 'Sober Bar', 'Continental Bites', 'Desserts'];
