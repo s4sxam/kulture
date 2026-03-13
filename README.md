@@ -1,6 +1,6 @@
 # ☕ Kulture — Specialty Café Website
 
-> A modern, animated café website for **Kulture** — Kolkata's specialty coffee, sober bar & continental kitchen.
+> A modern, animated café website for **Café**.
 
 🔗 **Live Site:** [kulture-ashy.vercel.app](https://kulture-ashy.vercel.app)
 
