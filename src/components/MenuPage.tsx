@@ -16,7 +16,7 @@ export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => voi
   useEffect(() => {
     const activeBtn = tabsRef.current?.querySelector('[data-active="true"]') as HTMLElement;
     activeBtn?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-  },[activeCategory]);
+  }, [activeCategory]);
 
   return (
     <motion.div
@@ -65,7 +65,7 @@ export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => voi
         >
           <ScrollList
             data={filteredItems}
-            itemHeight={400}
+            itemHeight={420}
             renderItem={(item) => (
               <div
                 key={item.id}
