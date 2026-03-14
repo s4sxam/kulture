@@ -71,7 +71,7 @@ const ScrollList = <T,>({
         listElement.removeEventListener("scroll", updateFocusedItem);
       }
     };
-  },[data, itemHeight]); // Dependencies: Re-run effect if data or itemHeight changes
+  }, [data, itemHeight]); // Dependencies: Re-run effect if data or itemHeight changes
 
   // Framer Motion Variants for defining animation states for each item
   const itemVariants: Variants = {
@@ -127,7 +127,8 @@ const ScrollList = <T,>({
         return (
           <motion.div
             key={index} // Unique key for React list rendering
-            className="scroll-list__item mx-auto max-w-3xl py-4"
+            // Constrained width so the items match your old card sizes and aren't stretched
+            className="scroll-list__item mx-auto max-w-[384px] w-full px-4 sm:px-0 py-4"
             variants={itemVariants} // Apply defined animation variants
             initial="hidden" // Initial animation state
             animate={variant} // Animate to this variant based on scroll position
