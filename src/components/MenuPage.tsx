@@ -4,7 +4,6 @@ import { Plus } from 'lucide-react';
 import { MENU_DATA, MenuItem, Category } from '../types';
 import { cn } from '../lib/utils';
 import { CATEGORY_COLORS, CATEGORY_BADGE } from '../data/content';
-import ScrollList from './ScrollList';
 
 export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => void }) => {
   const categories: Category[] =['Espresso Bar', 'Manual Brews', 'Sober Bar', 'Continental Bites', 'Desserts'];
@@ -61,56 +60,50 @@ export const MenuPage = ({ onAddToCart }: { onAddToCart: (item: MenuItem) => voi
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.22 }}
-          className="w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
-          <ScrollList
-            data={filteredItems}
-            itemHeight={420}
-            renderItem={(item) => (
-              <div
-                key={item.id}
-                className={cn(
-                  'bg-white/[0.04] rounded-2xl border overflow-hidden transition-all duration-300 group h-full flex flex-col',
-                  'hover:bg-white/[0.07] hover:shadow-lg hover:shadow-black/30',
-                  CATEGORY_COLORS[item.category]
-                )}
-              >
-                {item.image && (
-                  <div className="h-40 sm:h-44 overflow-hidden shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-                <div className="p-4 sm:p-5 flex flex-col flex-1">
-                  <div className="flex items-start justify-between gap-2 mb-1.5">
-                    <h3 className="font-serif text-base sm:text-lg text-crema leading-snug">{item.name}</h3>
-                    <span className={cn('shrink-0 mt-1 w-4 h-4 border flex items-center justify-center rounded-sm', item.isNonVeg ? 'border-red-500' : 'border-green-500')}>
-                      <span className={cn('w-2 h-2 rounded-full block', item.isNonVeg ? 'bg-red-500' : 'bg-green-500')} />
-                    </span>
-                  </div>
-                  <div>
-                    <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full inline-block', CATEGORY_BADGE[item.category])}>
-                      {item.category}
-                    </span>
-                  </div>
-                  <p className="text-ash text-xs leading-relaxed mt-2 mb-4 flex-1">{item.description}</p>
-                  <div className="flex items-center justify-between mt-auto pt-2 shrink-0">
-                    <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">₹{item.price}</span>
-                    <button
-                      onClick={() => onAddToCart(item)}
-                      className="flex items-center gap-1.5 bg-amber-gold/10 hover:bg-amber-gold active:scale-95 text-amber-gold hover:text-espresso text-xs font-bold px-3 sm:px-4 py-2 rounded-full border border-amber-gold/40 hover:border-amber-gold transition-all duration-200"
-                    >
-                      <Plus size={12} /> Add
-                    </button>
-                  </div>
+          {filteredItems.map(item => (
+            <div
+              key={item.id}
+              className={cn(
+                'bg-white/[0.04] rounded-2xl border overflow-hidden transition-all duration-300 group',
+                'hover:bg-white/[0.07] hover:shadow-lg hover:shadow-black/30',
+                CATEGORY_COLORS[item.category]
+              )}
+            >
+              {item.image && (
+                <div className="h-40 sm:h-44 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div className="p-4 sm:p-5">
+                <div className="flex items-start justify-between gap-2 mb-1.5">
+                  <h3 className="font-serif text-base sm:text-lg text-crema leading-snug">{item.name}</h3>
+                  <span className={cn('shrink-0 mt-1 w-4 h-4 border flex items-center justify-center rounded-sm', item.isNonVeg ? 'border-red-500' : 'border-green-500')}>
+                    <span className={cn('w-2 h-2 rounded-full block', item.isNonVeg ? 'bg-red-500' : 'bg-green-500')} />
+                  </span>
+                </div>
+                <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', CATEGORY_BADGE[item.category])}>
+                  {item.category}
+                </span>
+                <p className="text-ash text-xs leading-relaxed mt-2 mb-4">{item.description}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-amber-gold font-bold font-serif text-lg sm:text-xl">₹{item.price}</span>
+                  <button
+                    onClick={() => onAddToCart(item)}
+                    className="flex items-center gap-1.5 bg-amber-gold/10 hover:bg-amber-gold active:scale-95 text-amber-gold hover:text-espresso text-xs font-bold px-3 sm:px-4 py-2 rounded-full border border-amber-gold/40 hover:border-amber-gold transition-all duration-200"
+                  >
+                    <Plus size={12} /> Add
+                  </button>
                 </div>
               </div>
-            )}
-          />
+            </div>
+          ))}
         </motion.div>
       </AnimatePresence>
     </motion.div>
